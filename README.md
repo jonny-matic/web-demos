@@ -8,6 +8,9 @@ and can be downloaded and run by opening its `index.html` directly in a browser.
 
 - [`mode7/`](mode7) — Mode7-style scanline perspective rendering in a `<canvas>`. See
   [the article](https://jonnymatic.com/blog/gamedev-mode7-html5/).
+- [`camera-shake/`](camera-shake) — a screen-shake model using randomized amplitudes at a fixed
+  frequency, linearly interpolated, with a linear decay. See
+  [the article](https://jonnymatic.com/blog/gamedev-camera-shake/).
 
 ## License
 

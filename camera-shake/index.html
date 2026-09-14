@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camera Shake Demo</title>
+<style>
+  html, body { margin: 0; background: #050b14; color: #cfd8e3; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .wrap { max-width: 420px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 18px; margin: 0 0 6px; }
+  h2 { font-size: 13px; margin: 22px 0 8px; color: #8a97a8; }
+  p.lead { color: #8a97a8; font-size: 13px; margin: 0 0 24px; }
+  p.lead a { color: #22e0ff; }
+  .demo { background: #0b1220; border: 1.5px solid rgba(255,45,149,.6); border-radius: 10px;
+    padding: 26px 20px; text-align: center;
+    box-shadow: 0 0 26px rgba(255,45,149,.24), inset 0 0 22px rgba(255,45,149,.05); }
+  canvas { border-radius: 8px; border: 2px solid rgba(34,224,255,.5); background: #050b14;
+    max-width: 100%; height: auto; display: block; margin: 0 auto 14px; }
+  /* The original never set a stroke color for these two graphs (it drew black lines
+     against its own page's white background) — give them a white backing here so the
+     lines stay visible against this page's dark theme. */
+  #canvas_a, #canvas_b { background: #fff; }
+  .fields { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+  .field label { font-size: 11px; letter-spacing: .3px; color: #8a97a8; }
+  .field input { width: 90px; background: rgba(6,12,26,.9); border: 1px solid rgba(34,224,255,.35);
+    border-radius: 5px; color: #cfd8e3; padding: 6px 8px; font: inherit; font-size: 12px; }
+  button { background: transparent; border: 1.5px solid rgba(255,45,149,.7); color: #ff2d95;
+    padding: 10px 26px; border-radius: 6px; cursor: pointer; font: inherit;
+    font-size: 12px; font-weight: 800; letter-spacing: 1.5px; }
+  button:hover { background: rgba(255,45,149,.18); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Camera Shake Demo</h1>
+  <p class="lead">
+    Randomized amplitudes at a fixed frequency, linearly interpolated, with a linear decay. See
+    <a href="https://jonnymatic.com/blog/gamedev-camera-shake/">the article</a> for the full
+    <code>Shake</code> class and the math behind it.
+  </p>
+  <div class="demo">
+    <h2>X-axis Timeline</h2>
+    <canvas id="canvas_a" width="360" height="120"></canvas>
+    <h2>Y-axis Timeline</h2>
+    <canvas id="canvas_b" width="360" height="120"></canvas>
+    <h2>Settings</h2>
+    <div class="fields">
+      <div class="field">
+        <label for="durationTxt">Duration (s)</label>
+        <input id="durationTxt" type="text" value="1.0" autocomplete="off" maxlength="10">
+      </div>
+      <div class="field">
+        <label for="frequencyTxt">Frequency (Hz)</label>
+        <input id="frequencyTxt" type="text" value="60" autocomplete="off" maxlength="10">
+      </div>
+      <div class="field">
+        <label for="amplitudeTxt">Amplitude (px)</label>
+        <input id="amplitudeTxt" type="text" value="16" autocomplete="off" maxlength="10">
+      </div>
+    </div>
+    <button id="shakeBtn">Shake!</button>
+    <h2>View</h2>
+    <canvas id="canvas_v" width="360" height="360"></canvas>
+    <img id="image" src="image.jpg" width="1" height="1" alt="">
+  </div>
+</div>
+<script src="shake.js"></script>
+</body>
+</html>
